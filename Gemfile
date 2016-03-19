@@ -48,3 +48,5 @@ end
 gem 'devise'
 
 gem 'tiddle'
+
+gem "acts_as_follower"
