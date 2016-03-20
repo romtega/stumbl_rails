@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160319234128) do
+ActiveRecord::Schema.define(version: 20160320001604) do
 
   create_table "authentication_tokens", force: :cascade do |t|
     t.string   "body"
@@ -37,6 +37,18 @@ ActiveRecord::Schema.define(version: 20160319234128) do
 
   add_index "follows", ["followable_id", "followable_type"], name: "fk_followables"
   add_index "follows", ["follower_id", "follower_type"], name: "fk_follows"
+
+  create_table "posts", force: :cascade do |t|
+    t.string   "ptype"
+    t.string   "title"
+    t.text     "content"
+    t.string   "psource"
+    t.string   "url"
+    t.string   "htags"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "username",               default: "",                                                                              null: false
