@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get '/users/:user_id/is_following' => "users#is_following"
 
   resources :posts do
+    resources :comments
   end
 
 

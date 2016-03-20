@@ -1,5 +1,6 @@
 class Post < ActiveRecord::Base
 	belong_to :user
+	has_many :comments, :dependent => :destroy
 
 	def self.search_posts(arg)
 		user = User.find_by(username: arg)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160320001604) do
+ActiveRecord::Schema.define(version: 20160320004438) do
 
   create_table "authentication_tokens", force: :cascade do |t|
     t.string   "body"
@@ -24,6 +24,18 @@ ActiveRecord::Schema.define(version: 20160320001604) do
   end
 
   add_index "authentication_tokens", ["user_id"], name: "index_authentication_tokens_on_user_id"
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.text     "content"
+    t.string   "username"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "comments", ["post_id"], name: "index_comments_on_post_id"
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "follows", force: :cascade do |t|
     t.integer  "followable_id",                   null: false

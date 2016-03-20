@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
 
   has_many :authentication_tokens
   has_many :posts, :dependent => :destroy
+  has_many :comments, :through => :posts
 
 
    def followed_users_posts
