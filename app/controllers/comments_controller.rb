@@ -1,12 +1,12 @@
 class CommentsController < ApplicationController
-	before_action :authenticate_user!, except => [:index]
+  before_action :authenticate_user!, :except => [:index]
 
-	def index
-		@comments = Post.find(params[:post_id]).comments
-		render json: @comments
-	end
+ def index
+  @comments = Post.find(params[:post_id]).comments
+  render json: @comments
+ end
 
-	def create
+ def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.build(comment_params)
     @comment.user = current_user
@@ -26,10 +26,10 @@ class CommentsController < ApplicationController
     render json: @comment
   end
 
-	private
+  private
 
-	def comment_params
-		params.require(:comment).permit(:content)
-	end
+    def comment_params
+      params.require(:comment).permit(:content)
+    end
 
 end

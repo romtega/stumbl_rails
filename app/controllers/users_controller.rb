@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	before_action :authenticate_user!, :except => [:show_user_profile, :followers; :following]
+	before_action :authenticate_user!, :except => [:reset_password, :show_user_profile, :followers, :following]
 
 	def my_current_user
 		render json: my_current_user
@@ -56,7 +56,13 @@ class UsersController < ApplicationController
 		end
 	end
 
-private
+	def reset_password
+		@user = User.find_by_email(params[:user_email])
+		@user.send_reset_password_instructions
+		render json: @user
+	end
+
+	private
 
 	def user_params
 		params.require(:user).permit(:username, :avatar, :password)
